@@ -93,10 +93,10 @@ app.post('/', async (c) => {
 })
 
 
-app.all('/register', (c) => {
+app.all('/register', async (c) => {
 	const secretheader = c.req.headers.get('secret-key')
 	if (secretheader == c.env.DEVSECRET) {
-		register_commands(c.env.APPLICATION_ID, c.env.BOT_TOKEN)
+		await register_commands(c.env.APPLICATION_ID, c.env.BOT_TOKEN)
 		return c.text("Registered commands")
 	}
 
